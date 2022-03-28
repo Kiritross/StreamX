@@ -1,0 +1,8 @@
+name: StreamX
+version: '${project.version}'
+main: com.kiritokirigami5.StreamX
+authors: [ kiritokirigami5 ]
+description: Stream your amazing videos to EVERYONE!
+commands:
+  stream:
+

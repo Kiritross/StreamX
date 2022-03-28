@@ -1,0 +1,8 @@
+name: StreamX
+version: '1.0'
+main: com.kiritokirigami5.StreamX
+authors: [ kiritokirigami5 ]
+description: Stream your amazing videos to EVERYONE!
+commands:
+  stream:
+
