@@ -1,6 +1,8 @@
 package com.kiritokirigami5.commands.subcommands;
 
+import com.kiritokirigami5.StreamX;
 import com.kiritokirigami5.commands.SubCommand;
+import com.kiritokirigami5.events.CheckTwitch;
 import com.kiritokirigami5.utils.Colorize;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,6 +36,10 @@ public class ReloadCommand extends SubCommand {
 
         if (player.hasPermission(StreamPerm)) {
             plugin.reloadConfig();
+            if (config.getBoolean("TwitchApi.Enable")){
+                CheckTwitch check = new CheckTwitch((StreamX) plugin, config.getInt("TwitchApi.DelayCheck") * 20L);
+                check.execution();
+            }
             player.sendMessage(Colorize.colorize(config.getString("Messages.Reload")));
         }else{
             player.sendMessage(Colorize.colorize(NoPerms));

@@ -33,9 +33,8 @@ public class CheckTwitch {
     }
 
     public void action() {
+        FileConfiguration config = plugin.getConfig();
         for (Player p : Bukkit.getOnlinePlayers()) {
-            FileConfiguration config = plugin.getConfig();
-
             List<String> players = config.getStringList("TwitchApi.Streamers");
 
 
@@ -55,8 +54,13 @@ public class CheckTwitch {
                                 .replaceAll("%player%", idStr)
                                 .replaceAll("%link%", "twitch.tv/" + idStr)
                         );
+                        Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] "+idStr+" &d> &ftwitch.tv/"+idStr));
                     }
 
+                }else{
+                    if (config.getBoolean("TwitchApi.ConsoleLog")){
+                        Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] Anyone is in Twitch!"));
+                    }
                 }
             }
         }

@@ -42,3 +42,4 @@ TwitchApi:
     - "  &e%player% &fis on &dtwitch "
     - "&d--> &f%link% &d<--     "
     - "&b&m--------------------------"
+  ConsoleLog: true
