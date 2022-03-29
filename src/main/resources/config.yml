@@ -30,7 +30,9 @@ Messages:
   NoLink: "&f[&c-&f] You must use &e/strem <link>"
   NoRecognized: "&f[&c-&f] This link is not recognized!"
 TwitchApi:
+  #This api is used to send a message in chat if any of the streamers in config are streaming in twitch
   Enable: true
+  #The streamers that the api will be looking for.
   Streamers:
   - QueensGamingPalace
   - kiritokirigami25
