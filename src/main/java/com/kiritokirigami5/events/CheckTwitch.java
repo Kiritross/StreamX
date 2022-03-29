@@ -12,6 +12,8 @@ import java.util.List;
 
 public class CheckTwitch {
 
+    int send = 0;
+
     int taskID;
 
     private StreamX plugin;
@@ -34,6 +36,7 @@ public class CheckTwitch {
 
     public void action() {
         FileConfiguration config = plugin.getConfig();
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             List<String> players = config.getStringList("TwitchApi.Streamers");
 
@@ -54,13 +57,19 @@ public class CheckTwitch {
                                 .replaceAll("%player%", idStr)
                                 .replaceAll("%link%", "twitch.tv/" + idStr)
                         );
-                        Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] "+idStr+" &d> &ftwitch.tv/"+idStr));
+                        send = -1;
                     }
 
+                    Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] "+idStr+" &d> &ftwitch.tv/"+idStr));
+
                 }else{
-                    if (config.getBoolean("TwitchApi.ConsoleLog")){
-                        Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] Anyone is in Twitch!"));
-                    }
+                    send = send+1;
+                }
+            }
+
+            if (send != -1){
+                if (config.getBoolean("TwitchApi.ConsoleLog")){
+                    Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] Anyone is in Twitch!"));
                 }
             }
         }
