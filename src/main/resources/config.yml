@@ -35,7 +35,6 @@ TwitchApi:
   #The streamers that the api will be looking for.
   Streamers:
   - QueensGamingPalace
-  - kiritokirigami25
   DelayCheck: 120
   #Delay in seconds
   Message:
