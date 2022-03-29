@@ -34,7 +34,6 @@ public class CheckTwitch {
 
     public void action() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendMessage("WORKS!");
             FileConfiguration config = plugin.getConfig();
 
             List<String> players = config.getStringList("TwitchApi.Streamers");
