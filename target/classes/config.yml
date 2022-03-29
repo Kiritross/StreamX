@@ -29,3 +29,14 @@ Messages:
   NoPerms: "&f[&c-&f] You don't have permission to do that!"
   NoLink: "&f[&c-&f] You must use &e/strem <link>"
   NoRecognized: "&f[&c-&f] This link is not recognized!"
+TwitchApi:
+  Enable: true
+  Streamers:
+  - QueensGamingPalace
+  DelayCheck: 120
+  #Delay in seconds
+  Message:
+    - "&b&m--------------------------"
+    - "  &e%player% &fis on &dtwitch "
+    - "&d--> &f%link% &d<--     "
+    - "&b&m--------------------------"

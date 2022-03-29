@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kiritokirigami5</groupId>
-    <artifactId>StreamMain</artifactId>
+    <artifactId>StreamX</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>StreamMain</name>
+    <name>StreamX</name>
 
     <description>Stream your amazing videos to EVERYONE!</description>
     <properties>

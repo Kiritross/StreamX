@@ -1,9 +1,9 @@
 package com.kiritokirigami5;
 
 import com.kiritokirigami5.commands.CommandManager;
+import com.kiritokirigami5.events.CheckTwitch;
 import com.kiritokirigami5.files.Config;
 import com.kiritokirigami5.utils.Colorize;
-import com.sun.webkit.plugin.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -26,6 +26,11 @@ public final class StreamX extends JavaPlugin {
         getCommand("Stream").setExecutor(new CommandManager());
         this.reloadConfig();
         updateChecker();
+
+        if (config.getBoolean("TwitchApi.Enable")){
+            CheckTwitch check = new CheckTwitch(this, config.getInt("TwitchApi.DelayCheck") * 20L);
+            check.execution();
+        }
     }
 
     @Override
@@ -51,7 +56,7 @@ public final class StreamX extends JavaPlugin {
 
     public void updateChecker() {
         try {
-            HttpURLConnection con = (HttpURLConnection)(new URL("https://api.spigotmc.org/legacy/update.php?resource=97346")).openConnection();
+            HttpURLConnection con = (HttpURLConnection)(new URL("https://api.spigotmc.org/legacy/update.php?resource=97346/")).openConnection();
             int timed_out = 1250;
             con.setConnectTimeout(timed_out);
             con.setReadTimeout(timed_out);
