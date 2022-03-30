@@ -27,6 +27,8 @@ public final class StreamX extends JavaPlugin {
         this.reloadConfig();
         updateChecker();
 
+        Metrics metrics = new Metrics(this,14802);
+
         if (config.getBoolean("TwitchApi.Enable")){
             CheckTwitch check = new CheckTwitch(this, config.getInt("TwitchApi.DelayCheck") * 20L);
             check.execution();
