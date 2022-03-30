@@ -13,6 +13,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class StreamX extends JavaPlugin {
 
@@ -29,6 +31,26 @@ public final class StreamX extends JavaPlugin {
 
         Metrics metrics = new Metrics(this,14802);
 
+        //---------------------------------------------------------------------------------------------------------------
+
+        metrics.addCustomChart(new Metrics.DrilldownPie("java_version", () -> {
+            Map<String, Map<String, Integer>> map = new HashMap<>();
+            String javaVersion = System.getProperty("java.version");
+            Map<String, Integer> entry = new HashMap<>();
+            entry.put(javaVersion, 1);
+            if (javaVersion.startsWith("1.7")) {
+                map.put("Java 1.7", entry);
+            } else if (javaVersion.startsWith("1.8")) {
+                map.put("Java 1.8", entry);
+            } else if (javaVersion.startsWith("1.9")) {
+                map.put("Java 1.9", entry);
+            } else {
+                map.put("Other", entry);
+            }
+            return map;
+        }));
+
+        //---------------------------------------------------------------------------------------------------------------
         if (config.getBoolean("TwitchApi.Enable")){
             CheckTwitch check = new CheckTwitch(this, config.getInt("TwitchApi.DelayCheck") * 20L);
             check.execution();
@@ -58,7 +80,7 @@ public final class StreamX extends JavaPlugin {
 
     public void updateChecker() {
         try {
-            HttpURLConnection con = (HttpURLConnection)(new URL("https://api.spigotmc.org/legacy/update.php?resource=97346/")).openConnection();
+            HttpURLConnection con = (HttpURLConnection)(new URL("https://api.spigotmc.org/legacy/update.php?resource=97346//////////")).openConnection();
             int timed_out = 1250;
             con.setConnectTimeout(timed_out);
             con.setReadTimeout(timed_out);
