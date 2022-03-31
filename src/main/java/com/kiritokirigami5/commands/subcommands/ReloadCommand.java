@@ -43,7 +43,6 @@ public class ReloadCommand extends SubCommand {
             player.sendMessage(Colorize.colorize(config.getString("Messages.Reload")));
         }else{
             player.sendMessage(Colorize.colorize(NoPerms));
-            player.getItemInHand().getType();
         }
     }
 }

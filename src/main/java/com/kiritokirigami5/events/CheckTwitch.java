@@ -11,9 +11,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 import java.util.List;
 
 public class CheckTwitch {
-
-    int send = 0;
-
     int taskID;
 
     private StreamX plugin;
@@ -37,39 +34,31 @@ public class CheckTwitch {
     public void action() {
         FileConfiguration config = plugin.getConfig();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            List<String> players = config.getStringList("TwitchApi.Streamers");
+        List<String> players = config.getStringList("TwitchApi.Streamers");
 
 
-            for (int i = 0; i < players.size(); i++) {
-                StreamAPI streamarg = new StreamAPI(players.get(i));
+        for (int i = 0; i < players.size(); i++) {
+            StreamAPI streamarg = new StreamAPI(players.get(i));
 
-                List<String> msg = config.getStringList("TwitchApi.Message");
+            List<String> msg = config.getStringList("TwitchApi.Message");
 
-                String path = String.valueOf(streamarg.getUrl().getPath());
-                String idStr = path.substring(path.lastIndexOf("/") + 1);
+            String path = String.valueOf(streamarg.getUrl().getPath());
+            String idStr = path.substring(path.lastIndexOf("/") + 1);
 
-                if (streamarg.isOnline()) {
+            if (streamarg.isOnline()) {
 
-                    for (int g = 0; g < msg.size(); g++) {
+                for (int g = 0; g < msg.size(); g++) {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
 
                         p.sendMessage(Colorize.unColorize(msg.get(g))
                                 .replaceAll("%player%", idStr)
                                 .replaceAll("%link%", "twitch.tv/" + idStr)
                         );
-                        send = -1;
                     }
-
-                    Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] "+idStr+" &d> &ftwitch.tv/"+idStr));
-
-                }else{
-                    send = send+1;
                 }
-            }
 
-            if (send != -1){
-                if (config.getBoolean("TwitchApi.ConsoleLog")){
-                    Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] Anyone is in Twitch!"));
+                if (config.getBoolean("TwitchApi.ConsoleLog")) {
+                    Bukkit.getConsoleSender().sendMessage(Colorize.colorize("&f[&e-&f] " + idStr + " &d> &ftwitch.tv/" + idStr));
                 }
             }
         }
