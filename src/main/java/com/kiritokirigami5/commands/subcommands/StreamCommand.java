@@ -4,6 +4,7 @@ import com.kiritokirigami5.StreamX;
 import com.kiritokirigami5.commands.SubCommand;
 import com.kiritokirigami5.events.Cooldown;
 import com.kiritokirigami5.utils.Colorize;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -37,9 +38,12 @@ public class StreamCommand extends SubCommand {
         FileConfiguration config = plugin.getConfig();
 
         String NoLink = config.getString("Messages.NoLink");
+        NoLink = PlaceholderAPI.setPlaceholders(player, NoLink);
         String NoRecognized = config.getString("Messages.NoRecognized");
+        NoRecognized = PlaceholderAPI.setPlaceholders(player, NoRecognized);
         String StreamPerm = config.getString("Config.StreamPermission");
         String NoPerms = config.getString("Messages.NoPerms");
+        NoPerms = PlaceholderAPI.setPlaceholders(player, NoPerms);
 
         if (player.hasPermission(StreamPerm)){
             if (args.length >= 2) {
@@ -60,7 +64,6 @@ public class StreamCommand extends SubCommand {
 
                                 for (Player p : Bukkit.getOnlinePlayers()) {
                                     p.sendMessage(Colorize.unColorize(msg.get(i))
-                                            .replaceAll("%player%", player.getName())
                                             .replaceAll("%link%", args[1])
                                             .replaceAll("https://", "")
                                             .replaceAll("http://", "")
@@ -71,6 +74,7 @@ public class StreamCommand extends SubCommand {
                             break;
                         } else {
                             String inCooldown = config.getString("Messages.InCooldown");
+                            inCooldown = PlaceholderAPI.setPlaceholders(player, inCooldown);
                             player.sendMessage(Colorize.colorize(inCooldown).replaceAll("%cooldown%", c.getCooldown(player)));
                             break;
                         }

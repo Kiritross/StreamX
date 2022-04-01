@@ -3,6 +3,12 @@ version: '1.4'
 main: com.kiritokirigami5.StreamX
 authors: [ kiritokirigami5 ]
 description: Stream your amazing videos to EVERYONE!
+
+depend:
+  - "PlaceholderAPI"
+
 commands:
   stream:
+    usage: /stream
+    description: Stream your amazing videos to EVERYONE!
 

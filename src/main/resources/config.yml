@@ -1,45 +1,47 @@
 Platforms:
-  #You can make as many Platforms as you want!
+  # You can make as many Platforms as you want!
+  # All the configurable messages are able to use PlaceholdersApi.
+  # %link% is the unique custom variable
   youtube:
     domain: youtube.com
-    #If player uses http:// or https:// this will be automatically deleted in the final message.
+    # If player uses http:// or https:// this will be automatically deleted in the final message.
     message:
-      - "&b&m--------------------------"
-      - "     &e%player% &fis on &c&lY&f&lT "
-      - "&d--> &f%link% &d<--     "
-      - "&b&m--------------------------"
+      - '&b&m--------------------------'
+      - '     &e%player_name% &fis on &c&lY&f&lT '
+      - '&d--> &f%link% &d<--     '
+      - '&b&m--------------------------'
   twitch:
     domain: twitch.tv
     message:
-      - "&b&m--------------------------"
-      - "  &e%player% &fis on &dtwitch "
-      - "&d--> &f%link% &d<--     "
-      - "&b&m--------------------------"
+      - '&b&m--------------------------'
+      - '  &e%player_name% &fis on &dtwitch '
+      - '&d--> &f%link% &d<--     '
+      - '&b&m--------------------------'
 Config:
-  StreamPermission: "StreamX.stream"
-  #Permission to execute /stream cmd.
-  AdminPermission: "StreamX.*"
-  #Permission to execute the admin cmd.
+  StreamPermission: StreamX.stream
+  # Permission to execute /stream cmd.
+  AdminPermission: StreamX.*
+  # Permission to execute the admin cmd.
   Cooldown: 30
-  #Cooldown in seconds.
+# Cooldown in seconds.
 Messages:
-  Method: "&fYour &e/stream stream <link> &fmust include the respective domain."
-  InCooldown: "&f[&c-&f] You are in cooldown. You must wait for %cooldown%"
-  Reload: "&f[&a+&f] Reload Successfully!"
-  NoPerms: "&f[&c-&f] You don't have permission to do that!"
-  NoLink: "&f[&c-&f] You must use &e/strem <link>"
-  NoRecognized: "&f[&c-&f] This link is not recognized!"
+  Method: '&fYour &e/stream stream <link> &fmust include the respective domain.'
+  InCooldown: '&f[&c-&f] You are in cooldown. You must wait for %cooldown%'
+  Reload: '&f[&a+&f] Reload Successfully!'
+  NoPerms: '&f[&c-&f] You don''t have permission to do that!'
+  NoLink: '&f[&c-&f] You must use &e/strem <link>'
+  NoRecognized: '&f[&c-&f] This link is not recognized!'
 TwitchApi:
-  #This api is used to send a message in chat if any of the streamers in config are streaming in twitch
+  # This api is used to send a message in chat if any of the streamers in config are streaming in twitch
   Enable: true
-  #The streamers that the api will be looking for.
+  # The streamers that the api will be looking for.
   Streamers:
-  - QueensGamingPalace
+    - QueensGamingPalace
   DelayCheck: 120
-  #Delay in seconds
+  # Delay in seconds
   Message:
-    - "&b&m--------------------------"
-    - "  &e%player% &fis on &dtwitch "
-    - "&d--> &f%link% &d<--     "
-    - "&b&m--------------------------"
+    - '&b&m--------------------------'
+    - '  &e%player% &fis on &dtwitch '
+    - '&d--> &f%link% &d<--     '
+    - '&b&m--------------------------'
   ConsoleLog: true

@@ -2,6 +2,7 @@ package com.kiritokirigami5.commands.subcommands;
 
 import com.kiritokirigami5.commands.SubCommand;
 import com.kiritokirigami5.utils.Colorize;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -31,6 +32,8 @@ public class LinksCommand extends SubCommand {
 
         String StreamPerm = config.getString("Config.AdminPermission");
         String NoPerms = config.getString("Messages.NoPerms");
+        NoPerms = PlaceholderAPI.setPlaceholders(player, NoPerms);
+
         String Method = config.getString("Messages.Method");
 
         if (player.hasPermission(StreamPerm)) {
@@ -38,10 +41,11 @@ public class LinksCommand extends SubCommand {
             player.sendMessage(Colorize.unColorize("&f&m-----------------------------------"));
             for (String str : config.getConfigurationSection("Platforms").getKeys(false)) {
                 String method = config.getString("Platforms." + str + ".domain");
-                player.sendMessage(Colorize.unColorize("&a"+str + " &f> " + "&b"+method));
+                method = PlaceholderAPI.setPlaceholders(player, method);
+                player.sendMessage(Colorize.unColorize("&a" + str + " &f> " + "&b" + method));
             }
             player.sendMessage(Colorize.unColorize("&f&m-----------------------------------"));
-        }else{
+        } else {
             player.sendMessage(Colorize.colorize(NoPerms));
         }
     }

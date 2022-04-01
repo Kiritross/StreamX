@@ -4,6 +4,7 @@ import com.kiritokirigami5.StreamX;
 import com.kiritokirigami5.commands.SubCommand;
 import com.kiritokirigami5.events.CheckTwitch;
 import com.kiritokirigami5.utils.Colorize;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -33,6 +34,8 @@ public class ReloadCommand extends SubCommand {
 
         String StreamPerm = config.getString("Config.AdminPermission");
         String NoPerms = config.getString("Messages.NoPerms");
+        NoPerms = PlaceholderAPI.setPlaceholders(player, NoPerms);
+
 
         if (player.hasPermission(StreamPerm)) {
             plugin.reloadConfig();
@@ -40,7 +43,9 @@ public class ReloadCommand extends SubCommand {
                 CheckTwitch check = new CheckTwitch((StreamX) plugin, config.getInt("TwitchApi.DelayCheck") * 20L);
                 check.execution();
             }
-            player.sendMessage(Colorize.colorize(config.getString("Messages.Reload")));
+            String reloadMsg = config.getString("Messages.Reload");
+            reloadMsg = PlaceholderAPI.setPlaceholders(player, reloadMsg);
+            player.sendMessage(Colorize.colorize(reloadMsg));
         }else{
             player.sendMessage(Colorize.colorize(NoPerms));
         }
