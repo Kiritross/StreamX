@@ -41,7 +41,7 @@ TwitchApi:
   # Delay in seconds
   Message:
     - '&b&m--------------------------'
-    - '  &e%player% &fis on &dtwitch '
+    - '  &e%player_name% &fis on &dtwitch '
     - '&d--> &f%link% &d<--     '
     - '&b&m--------------------------'
   ConsoleLog: true
