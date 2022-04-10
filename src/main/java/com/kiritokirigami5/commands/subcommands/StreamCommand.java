@@ -10,12 +10,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StreamCommand extends SubCommand {
 
-    int NO = 0;
+    int integer = 0;
 
     @Override
     public String getName() {
@@ -63,14 +62,15 @@ public class StreamCommand extends SubCommand {
                             for (int i = 0; i < msg.size(); i++) {
 
                                 for (Player p : Bukkit.getOnlinePlayers()) {
-                                    p.sendMessage(Colorize.unColorize(msg.get(i))
+                                    String message = PlaceholderAPI.setPlaceholders(player, msg.get(i));
+                                    p.sendMessage(Colorize.unColorize(message)
                                             .replaceAll("%link%", args[1])
                                             .replaceAll("https://", "")
                                             .replaceAll("http://", "")
                                     );
                                 }
                             }
-                            NO = 0;
+                            integer = 0;
                             break;
                         } else {
                             String inCooldown = config.getString("Messages.InCooldown");
@@ -83,11 +83,12 @@ public class StreamCommand extends SubCommand {
                         player.sendMessage(Colorize.colorize("&7Use &e/stream &7help for help"));
                         break;
                     }else {
-                        NO += 1;
+                        integer = 1;
                     }
                 }
-                if (NO > 0){
-                    player.sendMessage(Colorize.colorize(NoRecognized));
+                if (integer == 1){
+                    String NoRecognize = PlaceholderAPI.setPlaceholders(player, NoRecognized);
+                    player.sendMessage(Colorize.colorize(NoRecognize));
                 }
             } else {
                 player.sendMessage(Colorize.colorize(NoLink));

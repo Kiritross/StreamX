@@ -1,5 +1,6 @@
 com\kiritokirigami5\commands\subcommands\ReloadCommand.class
 com\kiritokirigami5\events\CheckTwitch.class
+com\kiritokirigami5\utils\UpdateChecker.class
 com\kiritokirigami5\Metrics$MetricsBase.class
 com\kiritokirigami5\StreamX.class
 com\kiritokirigami5\commands\subcommands\LinksCommand.class

@@ -6,7 +6,7 @@
 
     <groupId>com.kiritokirigami5</groupId>
     <artifactId>StreamX</artifactId>
-    <version>1.5</version>
+    <version>1.6</version>
     <packaging>jar</packaging>
 
     <name>StreamX</name>
