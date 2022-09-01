@@ -9,5 +9,3 @@ Discord: https://discord.gg/6gzUBaPR7j
 Spigot download: https://www.spigotmc.org/resources/97346/
 
 Support project: https://paypal.me/kiritokirigami5
-
-If you want to get pinned in the wall of support, rate the plugin or fork this repo :D.
